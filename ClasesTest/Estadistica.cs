@@ -83,7 +83,6 @@ namespace ClasesTest
             {
                 mediana = (ordenado[ordenado.Length / 2] + ordenado[ordenado.Length / 2 - 1]) / 2;
             }
-            Console.WriteLine("mediana {0}", mediana);
 
             for(int i = 0; i < numeros.Length; i++)
             {
