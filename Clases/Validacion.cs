@@ -105,7 +105,7 @@ namespace Clases
 
             for (int i = 0; i < pesos.Length; i++)
             {
-                suma += pesos[i] * Int32.Parse(entidadOficina.Substring(i, 1));
+                suma += pesos[i] * int.Parse(entidadOficina.Substring(i, 1));
             }
             digito = 11 - (suma % 11);
 
@@ -123,7 +123,7 @@ namespace Clases
 
             for (int i = 0; i < pesos.Length; i++)
             {
-                suma += pesos[i] * Int32.Parse(cuentaBancaria.Substring(i, 1));
+                suma += pesos[i] * int.Parse(cuentaBancaria.Substring(i, 1));
             }
             digito = 11 - (suma % 11);
 
@@ -141,8 +141,34 @@ namespace Clases
 
         public int IBAN(string iban)
         {
+            if (iban.ToString().Length != 24)
+                return 0;
 
-            return -1;
+            string extension = iban.Substring(0, 2);
+            string resto = iban.Remove(0, 4);
+
+            if (extension != "ES")
+                return 0;
+
+            if (!resto.All(char.IsDigit))
+                return 0;
+
+            ulong calculo = ulong.Parse(resto + "142800") % 97 - 98;
+            string resultado = "";
+
+            if (calculo < 10)
+            {
+                resultado = "0" + calculo.ToString();
+            }
+            else 
+            {
+                resultado = calculo.ToString();
+            }
+
+            if (resultado != iban.Substring(2, 2))
+                return 0;
+
+            return 1;
         }
 
         public int Email(string email)
