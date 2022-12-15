@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -44,13 +45,12 @@ namespace Clases
             if (!Regex.IsMatch(dni.Substring(8), @"^[TRWAGMYFPDXBNJZSQVHLCKE]$")) // si el caracter final es diferente de TRWAGMYFPDXBNJZSQVHLCKE
                 return 0;
 
-            if (!Regex.IsMatch(dni.Substring(0,1), @"^[0-9]$")) // si el caracter inicial es diferente de KLMXYZ
+            if (!Regex.IsMatch(dni.Substring(0,1), @"^[0-9KLMXYZ]$")) // si el caracter inicial es diferente de KLMXYZ
                 return 0;
 
             if (!Regex.IsMatch(dni.Substring(1, 7), @"^[0-9]+$")) // si algun caracter intermedio es diferente de dígito
                 return 0;
-            Console.WriteLine(dni.Substring(0, 1));
-            Console.WriteLine(dni.Substring(8, 1));
+
             switch (dni.Substring(0, 1))
             {
                 case "K":
@@ -70,9 +70,30 @@ namespace Clases
             }
         }
 
-        public int TarjetaCredito(double tarjeta)
+        public int TarjetaCredito(long tarjeta)
         {
-            return -1;
+            Console.WriteLine(tarjeta.ToString().Length);
+            if (tarjeta.ToString().Length != 13 && tarjeta.ToString().Length != 16)
+                return 0;
+            
+            if (tarjeta.ToString()
+                        .Reverse()
+                        .Select(c => c - 48)
+                        .Select((thisNum, i) => i % 2 == 0 ? thisNum: ((thisNum *= 2) > 9 ? thisNum - 9 : thisNum))
+                        .Sum() % 10 == 0)
+                return 1;
+
+            return 0;
+        }
+
+        public static bool Luhn(string digits)
+        {
+            return digits.All(char.IsDigit) && digits.Reverse()
+                .Select(c => c - 48)
+                .Select((thisNum, i) => i % 2 == 0
+                    ? thisNum
+                    : ((thisNum *= 2) > 9 ? thisNum - 9 : thisNum)
+                ).Sum() % 10 == 0;
         }
 
         public int CuentaCorrienteCliente(string cuenta)

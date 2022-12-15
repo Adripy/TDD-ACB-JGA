@@ -76,11 +76,11 @@ namespace ClasesTest
         [TestMethod]
         public void TarjetaCreditoTest()
         {
-            double tcLargo = 5186484156541656456;
-            double tcCorto = 26;
-            double cpMS = 5540708689080426; // mastercard
-            double cpVisa16 = 4483627710043819; // visa 16
-            double cpVisa13 = 4038815174749; // visa 13
+            long tcLargo = 5186484156541656456;
+            long tcCorto = 26;
+            long cpMS = 5540708689080426; // mastercard
+            long cpVisa16 = 4483627710043819; // visa 16
+            long cpVisa13 = 4038815174749; // visa 13
 
             Validacion val = new Validacion();
 
