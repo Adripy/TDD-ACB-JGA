@@ -39,19 +39,21 @@ namespace ClasesTest
             float sum = 0;
 
             for (int i = 0; i < numeros.Length; i++)
-                sum = sum + (float)1 / numeros[i];
+                sum += (float)1 / numeros[i];
 
             return (float)Math.Round(numeros.Length / sum,2);
         }
 
         public float Mediana(float[] numeros)
         {
-            Array.Sort(numeros);
+            float[] resultado = (float[])numeros.Clone();
 
-            if (numeros.Length % 2 != 0)
-                return numeros[((numeros.Length + 1) / 2)-1];
+            Array.Sort(resultado);
 
-            return (numeros[numeros.Length / 2] + numeros[numeros.Length / 2 - 1]) / 2;
+            if (resultado.Length % 2 != 0)
+                return resultado[((resultado.Length + 1) / 2)-1];
+
+            return (resultado[resultado.Length / 2] + resultado[resultado.Length / 2 - 1]) / 2;
         }
 
         public float[] Moda(float[] numeros)
@@ -67,55 +69,27 @@ namespace ClasesTest
 
         public float[] DesviacionAbsoluta(float[] numeros)
         {
-            float[] ordenado = new float[numeros.Length];
+            float[] resultado = (float[])numeros.Clone();
 
-            ordenado = (float[])numeros.Clone();
-
-            Array.Sort(ordenado);
-
-            float mediana = 0;
-
-            if (ordenado.Length % 2 != 0)
-            {
-                mediana = ordenado[((ordenado.Length + 1) / 2) - 1];
-            }
-            else 
-            {
-                mediana = (ordenado[ordenado.Length / 2] + ordenado[ordenado.Length / 2 - 1]) / 2;
-            }
+            float mediana = Mediana(numeros);
 
             for(int i = 0; i < numeros.Length; i++)
             {
-                ordenado[i] = (float)Math.Round((float)Math.Abs(numeros[i] - mediana),1);
+                resultado[i] = (float)Math.Round((float)Math.Abs(resultado[i] - mediana),1);
             }
 
-            return ordenado;
+            return resultado;
         }
 
         public float DesviacionMedia(float[] numeros)
         {
             float sum = 0;
 
-            float[] ordenado = new float[numeros.Length];
+            float[] deviaciónAbsoluta = DesviacionAbsoluta(numeros);
 
-            ordenado = (float[])numeros.Clone();
-
-            Array.Sort(ordenado);
-
-            float mediana = 0;
-
-            if (ordenado.Length % 2 != 0)
+            for (int i = 0; i < deviaciónAbsoluta.Length; i++)
             {
-                mediana = ordenado[((ordenado.Length + 1) / 2) - 1];
-            }
-            else
-            {
-                mediana = (ordenado[ordenado.Length / 2] + ordenado[ordenado.Length / 2 - 1]) / 2;
-            }
-
-            for (int i = 0; i < numeros.Length; i++)
-            {
-                sum += (float)Math.Round((float)Math.Abs(numeros[i] - mediana), 1);
+                sum += deviaciónAbsoluta[i];
             }
 
             return (float)sum / numeros.Length;
