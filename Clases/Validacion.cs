@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -88,15 +89,62 @@ namespace Clases
 
         public int CodigoCuentaCliente(string cuenta)
         {
-            
-    
-            return 0;
+            if (cuenta.ToString().Length != 20)
+                return 0;
+
+            if (!cuenta.All(char.IsDigit))
+                return 0;
+
+            string entidadOficina = "00";
+            entidadOficina = entidadOficina + cuenta.Substring(0, 8);
+            string cuentaBancaria = cuenta.Substring(10);
+
+            int[] pesos = { 1, 2, 4, 8, 5, 10, 9, 7, 3, 6 };
+            int suma = 0;
+            int digito;
+
+            for (int i = 0; i < pesos.Length; i++)
+            {
+                suma += pesos[i] * Int32.Parse(entidadOficina.Substring(i, 1));
+            }
+            digito = 11 - (suma % 11);
+
+            if (digito == 10)
+                digito = 1;
+
+            if (digito == 11)
+                digito = 0;
+
+
+            if (digito.ToString() != cuenta.Substring(8, 1))
+                return 0;
+
+            suma = 0;
+
+            for (int i = 0; i < pesos.Length; i++)
+            {
+                suma += pesos[i] * Int32.Parse(cuentaBancaria.Substring(i, 1));
+            }
+            digito = 11 - (suma % 11);
+
+            if (digito == 10)
+                return 1;
+
+            if (digito == 11)
+                digito = 0;
+  
+            if (digito.ToString() != cuenta.Substring(9, 1))
+                return 0;
+
+            return 1;
         }
 
         public int IBAN(string iban)
         {
+
             return -1;
         }
+
         public int Email(string email)
         {
             if (Regex.IsMatch(email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
