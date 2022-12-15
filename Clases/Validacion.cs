@@ -72,33 +72,34 @@ namespace Clases
 
         public int TarjetaCredito(long tarjeta)
         {
-            Console.WriteLine(tarjeta.ToString().Length);
             if (tarjeta.ToString().Length != 13 && tarjeta.ToString().Length != 16)
                 return 0;
             
             if (tarjeta.ToString()
-                        .Reverse()
-                        .Select(c => c - 48)
-                        .Select((thisNum, i) => i % 2 == 0 ? thisNum: ((thisNum *= 2) > 9 ? thisNum - 9 : thisNum))
-                        .Sum() % 10 == 0)
+                        .Reverse() // lo voltea
+                        .Select(c => (int)char.GetNumericValue(c)) //coge numero a numero
+                        .Select((n, i) => ((i % 2) == 0) ? n : n * 2) //los impares los deja como estan los pares los multiplica por 2
+                        .Select(n => n > 9 ? n - 9 : n) //Toma el 1º dígito de las unidades 
+                        .Sum() % 10 == 0) // suma todos los anteriores y se hace modulo de 10, si da 0 es válido
                 return 1;
 
             return 0;
         }
 
-        public static bool Luhn(string digits)
-        {
-            return digits.All(char.IsDigit) && digits.Reverse()
-                .Select(c => c - 48)
-                .Select((thisNum, i) => i % 2 == 0
-                    ? thisNum
-                    : ((thisNum *= 2) > 9 ? thisNum - 9 : thisNum)
-                ).Sum() % 10 == 0;
-        }
-
         public int CuentaCorrienteCliente(string cuenta)
         {
-            return -1;
+            if (cuenta.ToString().Length != 13)
+                return 0;
+
+            if (cuenta.ToString()
+                        .Reverse() // lo voltea
+                        .Select(c => (int)char.GetNumericValue(c)) //coge numero a numero
+                        .Select((n, i) => ((i % 2) == 0) ? n : n * 2) //los impares los deja como estan los pares los multiplica por 2
+                        .Select(n => n > 9 ? n - 9 : n) //Toma el 1º dígito de las unidades 
+                        .Sum() % 10 == 0) // suma todos los anteriores y se hace modulo de 10, si da 0 es válido
+                return 1;
+
+            return 0;
         }
 
         public int IBAN(string iban)
