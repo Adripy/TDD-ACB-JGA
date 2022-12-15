@@ -22,9 +22,9 @@ namespace ClasesTest
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(null, CodigoPostal(cpLargo));
-            Assert.AreEqual(null, CodigoPostal(cpCorto));
-            Assert.AreEqual(null, CodigoPostal(cpGrande));
+            Assert.AreEqual(null, val.CodigoPostal(cpLargo));
+            Assert.AreEqual(null, val.CodigoPostal(cpCorto));
+            Assert.AreEqual(null, val.CodigoPostal(cpGrande));
 
             foreach (KeyValuePair<int, string> pares in codigosPrueba)
             {
@@ -58,14 +58,14 @@ namespace ClasesTest
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(0, NIF(nifLargo));
-            Assert.AreEqual(0, NIF(nifCorto));
-            Assert.AreEqual(0, NIF(nifNoLetraIni));
-            Assert.AreEqual(0, NIF(nifLetraIniMal));
-            Assert.AreEqual(0, NIF(nifNumConFinalX));
-            Assert.AreEqual(0, NIF(nifLetConFinalX));
-            Assert.AreEqual(0, NIF(nifNumConLetraMid));
-            Assert.AreEqual(0, NIF(nifLetConLetraMid));
+            Assert.AreEqual(0, val.NIF(nifLargo));
+            Assert.AreEqual(0, val.NIF(nifCorto));
+            Assert.AreEqual(0, val.NIF(nifNoLetraIni));
+            Assert.AreEqual(0, val.NIF(nifLetraIniMal));
+            Assert.AreEqual(0, val.NIF(nifNumConFinalX));
+            Assert.AreEqual(0, val.NIF(nifLetConFinalX));
+            Assert.AreEqual(0, val.NIF(nifNumConLetraMid));
+            Assert.AreEqual(0, val.NIF(nifLetConLetraMid));
 
             foreach (KeyValuePair<int, string> pares in nifPrueba)
             {
@@ -84,11 +84,11 @@ namespace ClasesTest
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(0, TarjetaCredito(tcLargo));
-            Assert.AreEqual(0, TarjetaCredito(tcCorto));
-            Assert.AreEqual(1, TarjetaCredito(cpMS));// mastercard
-            Assert.AreEqual(1, TarjetaCredito(cpVisa16)); //visa 16 digitos
-            Assert.AreEqual(1, TarjetaCredito(cpVisa13)); //visa 13 digitos
+            Assert.AreEqual(0, val.TarjetaCredito(tcLargo));
+            Assert.AreEqual(0, val.TarjetaCredito(tcCorto));
+            Assert.AreEqual(1, val.TarjetaCredito(cpMS));// mastercard
+            Assert.AreEqual(1, val.TarjetaCredito(cpVisa16)); //visa 16 digitos
+            Assert.AreEqual(1, val.TarjetaCredito(cpVisa13)); //visa 13 digitos
         }
 
         [TestMethod]
@@ -104,13 +104,13 @@ namespace ClasesTest
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(0, CuentaCorrienteCliente(cccLargo));
-            Assert.AreEqual(0, CuentaCorrienteCliente(cccCorto));
-            Assert.AreEqual(0, CuentaCorrienteCliente(cccConLetras));
-            Assert.AreEqual(0, CuentaCorrienteCliente(cccConEspecial));
-            Assert.AreEqual(0, CuentaCorrienteCliente(cccMal));
-            Assert.AreEqual(1, CuentaCorrienteCliente(ccc));
-            Assert.AreEqual(1, CuentaCorrienteCliente(ccc1));
+            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccLargo));
+            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccCorto));
+            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccConLetras));
+            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccConEspecial));
+            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccMal));
+            Assert.AreEqual(1, val.CuentaCorrienteCliente(ccc));
+            Assert.AreEqual(1, val.CuentaCorrienteCliente(ccc1));
         }
 
         [TestMethod]
@@ -127,14 +127,14 @@ namespace ClasesTest
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(0, IBAN(ibanLargo));
-            Assert.AreEqual(0, IBAN(ibanCorto));
-            Assert.AreEqual(0, IBAN(ibanSinES));
-            Assert.AreEqual(0, IBAN(ibanConLetrasMid));
-            Assert.AreEqual(0, IBAN(ibanConEspecial));
-            Assert.AreEqual(0, IBAN(ibanMal));
-            Assert.AreEqual(1, IBAN(iban));
-            Assert.AreEqual(1, IBAN(iban1));
+            Assert.AreEqual(0, val.IBAN(ibanLargo));
+            Assert.AreEqual(0, val.IBAN(ibanCorto));
+            Assert.AreEqual(0, val.IBAN(ibanSinES));
+            Assert.AreEqual(0, val.IBAN(ibanConLetrasMid));
+            Assert.AreEqual(0, val.IBAN(ibanConEspecial));
+            Assert.AreEqual(0, val.IBAN(ibanMal));
+            Assert.AreEqual(1, val.IBAN(iban));
+            Assert.AreEqual(1, val.IBAN(iban1));
         }
 
         [TestMethod]
@@ -168,16 +168,16 @@ namespace ClasesTest
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(0, Email(emailSinArroba));
-            Assert.AreEqual(0, Email(emailNoTexArroba));
-            Assert.AreEqual(0, Email(emailTexArrobaNoTexPunto));
-            Assert.AreEqual(0, Email(emailTexArrobaEspPunto));
-            Assert.AreEqual(0, Email(emailTexArrobaTexPuntoNoTex));
-            Assert.AreEqual(0, Email(emailTexArrobaTexPuntoCar));
-            Assert.AreEqual(0, Email(emailTexArrobaTexPunto2MinEsp));
-            Assert.AreEqual(0, Email(espacio1));
-            Assert.AreEqual(0, Email(espacio2));
-            Assert.AreEqual(0, Email(espacio3));
+            Assert.AreEqual(0, val.Email(emailSinArroba));
+            Assert.AreEqual(0, val.Email(emailNoTexArroba));
+            Assert.AreEqual(0, val.Email(emailTexArrobaNoTexPunto));
+            Assert.AreEqual(0, val.Email(emailTexArrobaEspPunto));
+            Assert.AreEqual(0, val.Email(emailTexArrobaTexPuntoNoTex));
+            Assert.AreEqual(0, val.Email(emailTexArrobaTexPuntoCar));
+            Assert.AreEqual(0, val.Email(emailTexArrobaTexPunto2MinEsp));
+            Assert.AreEqual(0, val.Email(espacio1));
+            Assert.AreEqual(0, val.Email(espacio2));
+            Assert.AreEqual(0, val.Email(espacio3));
 
             foreach (string email in emails)
             {
