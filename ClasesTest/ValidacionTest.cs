@@ -140,20 +140,49 @@ namespace ClasesTest
         [TestMethod]
         public void EmailTest()
         {
-            string emailSinArroba = "abcd*/-.com";
+            string emailSinArroba = "abcd+-/*dsf.com";
+            string emailNoTexArroba = "@abcddsf.com";
+            string emailTexArrobaNoTexPunto = "abcdef@.com";
+            string emailTexArrobaEspPunto = "abcdef@a+*-d.com";
+            string emailTexArrobaTexPuntoNoTex = "abcdef@mail.";
+            string emailTexArrobaTexPuntoCar = "abcdef@mail.c";
+            string emailTexArrobaTexPunto2MinEsp = "abcdef@mail.c/om";
+            string espacio1 = "abcd ef@mail.com";
+            string espacio2 = "abcdef@ma il.com";
+            string espacio3 = "abcdef@mail.co m";
 
+            //las casos de prueba descritos abarcarian la mayoria de los email de uso actual
+            //sabiendo que algunos pasan sin ser realmente válidos
+            List<string> emails = new List<string>() {
+                "abcdefghfghfghfghfgh@abdfghfghfghfghfghfgh.fghfghfghfghfghfgh",
+                "abcde._%+-@yahoo.co",
+                "abcde._%+-@abd.es",
+                "._%+--+-+-@gmail.uk",
+                "jeramie_morar@ya hoo.com",
+                "franklin_delano.roosevelt.jr.@aol.com",
+                "vladimir_putin@protonmail.como",
+                "paula_newby-fraser@yandex.com",
+                "abdel_latifabuhaif@hotmail.comun",
+                "jamescracknell@outlook.italia"
+            };
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(0, Email(ibanLargo));
-            Assert.AreEqual(0, Email(ibanCorto));
-            Assert.AreEqual(0, Email(ibanSinES));
-            Assert.AreEqual(0, Email(ibanConLetrasMid));
-            Assert.AreEqual(0, Email(ibanConEspecial));
-            Assert.AreEqual(0, Email(ibanMal));
-            Assert.AreEqual(0, Email(iban));
-            Assert.AreEqual(1, Email(iban1));
-            Assert.AreEqual(1, Email(iban1));
+            Assert.AreEqual(0, Email(emailSinArroba));
+            Assert.AreEqual(0, Email(emailNoTexArroba));
+            Assert.AreEqual(0, Email(emailTexArrobaNoTexPunto));
+            Assert.AreEqual(0, Email(emailTexArrobaEspPunto));
+            Assert.AreEqual(0, Email(emailTexArrobaTexPuntoNoTex));
+            Assert.AreEqual(0, Email(emailTexArrobaTexPuntoCar));
+            Assert.AreEqual(0, Email(emailTexArrobaTexPunto2MinEsp));
+            Assert.AreEqual(0, Email(espacio1));
+            Assert.AreEqual(0, Email(espacio2));
+            Assert.AreEqual(0, Email(espacio3));
+
+            foreach (string email in emails)
+            {
+                Assert.AreEqual(1, Email(email));
+            }
         }
     }
 }
