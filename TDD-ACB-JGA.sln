@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClasesTest", "ClasesTest\Cl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Comun", "Comun\Comun.csproj", "{F415B28F-903C-48BE-87E3-1FDCB9925A8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clases", "Clases\Clases.csproj", "{DC79EBB6-C429-4399-981A-CB4B017C80C2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{F415B28F-903C-48BE-87E3-1FDCB9925A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F415B28F-903C-48BE-87E3-1FDCB9925A8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F415B28F-903C-48BE-87E3-1FDCB9925A8E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC79EBB6-C429-4399-981A-CB4B017C80C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC79EBB6-C429-4399-981A-CB4B017C80C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC79EBB6-C429-4399-981A-CB4B017C80C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC79EBB6-C429-4399-981A-CB4B017C80C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
