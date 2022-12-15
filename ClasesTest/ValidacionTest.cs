@@ -39,15 +39,14 @@ namespace ClasesTest
             string nifLargo = "G518648415564GHJ";
             string nifCorto = "G26G";
             string nifNoLetraIni = "645121562";
-            string nifLetraIniMal = "O45121562";
-            string nifNumConFinalX = "64512156X";
-            string nifLetConFinalX = "X4512156X";
+            string nifLetraIniMal = "T45121562";
+            string nifNumConFinalU = "64512156U";
+            string nifLetConFinalU = "X4512156U";
             string nifNumConLetraMid = "645M2156X";
             string nifLetConLetraMid = "X45M2156X";
 
             Dictionary<int, string> nifPrueba = new Dictionary<int, string>
             {
-                { 1 ,"12345678A" },
                 { 1 ,"12345678W" },
                 { 2 ,"K1234567V" },
                 { 3 ,"L1234567H" },
@@ -63,8 +62,8 @@ namespace ClasesTest
             Assert.AreEqual(0, val.NIF(nifCorto));
             Assert.AreEqual(0, val.NIF(nifNoLetraIni));
             Assert.AreEqual(0, val.NIF(nifLetraIniMal));
-            Assert.AreEqual(0, val.NIF(nifNumConFinalX));
-            Assert.AreEqual(0, val.NIF(nifLetConFinalX));
+            Assert.AreEqual(0, val.NIF(nifNumConFinalU));
+            Assert.AreEqual(0, val.NIF(nifLetConFinalU));
             Assert.AreEqual(0, val.NIF(nifNumConLetraMid));
             Assert.AreEqual(0, val.NIF(nifLetConLetraMid));
 
