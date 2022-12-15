@@ -137,6 +137,23 @@ namespace ClasesTest
             Assert.AreEqual(1, IBAN(iban1));
         }
 
+        [TestMethod]
+        public void EmailTest()
+        {
+            string emailSinArroba = "abcd*/-.com";
 
+
+            Validacion val = new Validacion();
+
+            Assert.AreEqual(0, Email(ibanLargo));
+            Assert.AreEqual(0, Email(ibanCorto));
+            Assert.AreEqual(0, Email(ibanSinES));
+            Assert.AreEqual(0, Email(ibanConLetrasMid));
+            Assert.AreEqual(0, Email(ibanConEspecial));
+            Assert.AreEqual(0, Email(ibanMal));
+            Assert.AreEqual(0, Email(iban));
+            Assert.AreEqual(1, Email(iban1));
+            Assert.AreEqual(1, Email(iban1));
+        }
     }
 }
