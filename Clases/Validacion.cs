@@ -88,17 +88,8 @@ namespace Clases
 
         public int CodigoCuentaCliente(string cuenta)
         {
-            if (cuenta.ToString().Length != 20)
-                return 0;
-
-            if (cuenta.ToString()
-                        .Reverse() // lo voltea
-                        .Select(c => (int)char.GetNumericValue(c)) //coge numero a numero
-                        .Select((n, i) => ((i % 2) == 0) ? n : n * 2) //los impares los deja como estan los pares los multiplica por 2
-                        .Select(n => n > 9 ? n - 9 : n) //Toma el 1º dígito de las unidades 
-                        .Sum() % 10 == 0) // suma todos los anteriores y se hace modulo de 10, si da 0 es válido
-                return 1;
-
+            
+    
             return 0;
         }
 
@@ -108,7 +99,10 @@ namespace Clases
         }
         public int Email(string email)
         {
-            return -1;
+            if (Regex.IsMatch(email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+                return 1;
+
+            return 0;
         }
     }
 }

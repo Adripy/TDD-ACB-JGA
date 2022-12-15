@@ -158,7 +158,7 @@ namespace ClasesTest
                 "abcde._%+-@yahoo.co",
                 "abcde._%+-@abd.es",
                 "._%+--+-+-@gmail.uk",
-                "jeramie_morar@ya hoo.com",
+                "jeramie_morar@yahoo.com",
                 "franklin_delano.roosevelt.jr.@aol.com",
                 "vladimir_putin@protonmail.como",
                 "paula_newby-fraser@yandex.com",
