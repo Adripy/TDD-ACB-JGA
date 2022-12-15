@@ -92,7 +92,7 @@ namespace ClasesTest
         }
 
         [TestMethod]
-        public void CuentaCorrienteClienteTest()
+        public void CodigoCuentaClienteTest()
         {
             string cccLargo = "5186484156541656456685416485";
             string cccCorto = "26";
@@ -104,13 +104,13 @@ namespace ClasesTest
 
             Validacion val = new Validacion();
 
-            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccLargo));
-            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccCorto));
-            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccConLetras));
-            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccConEspecial));
-            Assert.AreEqual(0, val.CuentaCorrienteCliente(cccMal));
-            Assert.AreEqual(1, val.CuentaCorrienteCliente(ccc));
-            Assert.AreEqual(1, val.CuentaCorrienteCliente(ccc1));
+            Assert.AreEqual(0, val.CodigoCuentaCliente(cccLargo));
+            Assert.AreEqual(0, val.CodigoCuentaCliente(cccCorto));
+            Assert.AreEqual(0, val.CodigoCuentaCliente(cccConLetras));
+            Assert.AreEqual(0, val.CodigoCuentaCliente(cccConEspecial));
+            Assert.AreEqual(0, val.CodigoCuentaCliente(cccMal));
+            Assert.AreEqual(1, val.CodigoCuentaCliente(ccc));
+            Assert.AreEqual(1, val.CodigoCuentaCliente(ccc1));
         }
 
         [TestMethod]

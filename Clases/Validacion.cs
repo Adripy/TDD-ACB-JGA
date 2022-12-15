@@ -86,9 +86,9 @@ namespace Clases
             return 0;
         }
 
-        public int CuentaCorrienteCliente(string cuenta)
+        public int CodigoCuentaCliente(string cuenta)
         {
-            if (cuenta.ToString().Length != 13)
+            if (cuenta.ToString().Length != 20)
                 return 0;
 
             if (cuenta.ToString()
