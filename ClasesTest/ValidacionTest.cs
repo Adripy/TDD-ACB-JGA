@@ -29,7 +29,7 @@ namespace ClasesTest
 
             foreach (KeyValuePair<int, string> pares in codigosPrueba)
             {
-                Assert.AreEqual(pares.Value, CodigoPostal(pares.Key));
+                Assert.AreEqual(pares.Value, val.CodigoPostal(pares.Key));
             }
         }
 
@@ -70,7 +70,7 @@ namespace ClasesTest
 
             foreach (KeyValuePair<int, string> pares in nifPrueba)
             {
-                Assert.AreEqual(pares.Key, NIF(pares.Value));
+                Assert.AreEqual(pares.Key, val.NIF(pares.Value));
             }
         }
 
@@ -182,7 +182,7 @@ namespace ClasesTest
 
             foreach (string email in emails)
             {
-                Assert.AreEqual(1, Email(email));
+                Assert.AreEqual(1, val.Email(email));
             }
         }
     }
