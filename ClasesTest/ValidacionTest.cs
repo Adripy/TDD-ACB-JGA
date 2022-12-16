@@ -2,12 +2,31 @@
 using System;
 using System.Collections.Generic;
 using Clases;
+using Comun;
 
 namespace ClasesTest
 {
     [TestClass]
     public class ValidacionTest
     {
+        private TestContext testContextInstance;
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
+
+        [TestMethod]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "..\\TestCP.csv", "TestCP#csv", DataAccessMethod.Sequential)]
+
+        public void CodigoPostalTest2() 
+        {
+            Validacion val = new Validacion();
+            int cp = Convert.ToInt32(TestContext.DataRow["dato"]);
+            string provincia = Convert.ToString(TestContext.DataRow["resultado"]);
+            Assert.AreEqual(provincia, val.CodigoPostal(cp));
+        }
+
         [TestMethod]
         public void CodigoPostalTest()
         {
