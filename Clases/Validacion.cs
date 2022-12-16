@@ -153,22 +153,22 @@ namespace Clases
             if (!resto.All(char.IsDigit))
                 return 0;
 
-            ulong calculo = ulong.Parse(resto + "142800") % 97 - 98;
-            string resultado = "";
+            string calculo = resto + "1428" + iban.Substring(2, 2);
 
-            if (calculo < 10)
+            int sum = int.Parse(calculo.Substring(0, 1));
+
+            for (int i = 1; i < calculo.Length; i++) 
             {
-                resultado = "0" + calculo.ToString();
-            }
-            else 
-            {
-                resultado = calculo.ToString();
+                int v = int.Parse(calculo.Substring(i, 1)); // coge numero a numero
+                sum *= 10; // multiplicamos por  10 para añadir un dígito 0
+                sum += v; // sumamos el número por el que vamos
+                sum %= 97; // hacemos el módulo
             }
 
-            if (resultado != iban.Substring(2, 2))
-                return 0;
+            if (sum == 1)
+                return 1;
 
-            return 1;
+            return 0;
         }
 
         public int Email(string email)
