@@ -105,31 +105,30 @@ namespace Clases
             entidadOficina = entidadOficina + cuenta.Substring(0, 8);
             string cuentaBancaria = cuenta.Substring(10);
 
+            int digito;
+
+            digito = DigitoControl(entidadOficina);
+
+            if (digito.ToString() != cuenta.Substring(8, 1))
+                return 0;
+
+            digito = DigitoControl(cuentaBancaria);
+
+            if (digito.ToString() != cuenta.Substring(9, 1))
+                return 0;
+
+            return 1;
+        }
+
+        private int DigitoControl(string numeros)
+        {
             int[] pesos = { 1, 2, 4, 8, 5, 10, 9, 7, 3, 6 };
             int suma = 0;
             int digito;
 
             for (int i = 0; i < pesos.Length; i++)
             {
-                suma += pesos[i] * int.Parse(entidadOficina.Substring(i, 1));
-            }
-            digito = 11 - (suma % 11);
-
-            if (digito == 10)
-                digito = 1;
-
-            if (digito == 11)
-                digito = 0;
-
-
-            if (digito.ToString() != cuenta.Substring(8, 1))
-                return 0;
-
-            suma = 0;
-
-            for (int i = 0; i < pesos.Length; i++)
-            {
-                suma += pesos[i] * int.Parse(cuentaBancaria.Substring(i, 1));
+                suma += pesos[i] * int.Parse(numeros.Substring(i, 1));
             }
             digito = 11 - (suma % 11);
 
@@ -138,8 +137,8 @@ namespace Clases
 
             if (digito == 11)
                 digito = 0;
-  
-            if (digito.ToString() != cuenta.Substring(9, 1))
+
+            if (digito.ToString() != numeros.Substring(9, 1))
                 return 0;
 
             return 1;
