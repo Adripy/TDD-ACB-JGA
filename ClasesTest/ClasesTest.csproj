@@ -55,6 +55,7 @@
     <Compile Include="ValidacionTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClasesTest.cd" />
     <None Include="packages.config" />
     <None Include="TestCP.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
