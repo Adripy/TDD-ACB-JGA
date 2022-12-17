@@ -14,9 +14,23 @@ namespace Clases
     {
         public string CodigoPostal(int codigoPostal)
         {
+            if (codigoPostal.ToString().Length > 5 )
+                return null;
+
+            if (codigoPostal > 52999 || codigoPostal == 0)
+                return null;
+
+            string digitos = codigoPostal.ToString().Substring(0, 2);
+
+            if (codigoPostal < 10000)
+                digitos = codigoPostal.ToString().Substring(0, 1);
+
+            if (codigoPostal < 1000)
+                digitos = "1";
+
             string ubicacion = Utils.GetAbsolutePath("..\\datos\\CPProvincia.csv");
 
-            System.IO.StreamReader archivo = new System.IO.StreamReader(ubicacion,System.Text.Encoding.UTF7);
+            System.IO.StreamReader archivo = new System.IO.StreamReader(ubicacion, System.Text.Encoding.UTF7);
             char separador = ';';
             string linea;
 
@@ -27,14 +41,6 @@ namespace Clases
                 string[] fila = linea.Split(separador);
                 provincias.Add(fila[0], fila[1]); // se agregan las filas por pares con las columnas
             }
-
-            if (codigoPostal.ToString().Length != 5 )
-                return null;
-
-            if (codigoPostal > 52999)
-                return null;
-
-            string digitos = codigoPostal.ToString().Substring(0, 2);
 
             return provincias[digitos];
         }

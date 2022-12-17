@@ -3,39 +3,36 @@ using System;
 using System.Collections.Generic;
 using Clases;
 using Comun;
+using System.Data;
 
 namespace ClasesTest
 {
     [TestClass]
     public class ValidacionTest
     {
-        private TestContext testContextInstance;
-        public TestContext TestContext
-        {
-            get { return testContextInstance; }
-            set { testContextInstance = value; }
-        }
+        public TestContext TestContext { get; set; }
 
         [TestMethod]
-        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "..\\TestCP.csv", "TestCP#csv", DataAccessMethod.Sequential)]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.CSV", "..\\..\\TestCP.csv", "TestCP#csv", DataAccessMethod.Sequential)]
 
         public void CodigoPostalTest2() 
         {
             Validacion val = new Validacion();
-            int cp = Convert.ToInt32(TestContext.DataRow["dato"]);
-            string provincia = Convert.ToString(TestContext.DataRow["resultado"]);
-            Assert.AreEqual(provincia, val.CodigoPostal(cp));
+            string provincia = TestContext.DataRow[0].ToString();
+            string cp = TestContext.DataRow[1].ToString();
+            Assert.AreEqual(provincia, val.CodigoPostal(Int32.Parse(cp)));
         }
 
         [TestMethod]
         public void CodigoPostalTest()
         {
             int cpLargo = 518648415;
-            int cpCorto = 26;
             int cpGrande = 68598;
+            int cpCero = 0;
 
             Dictionary<int, string> codigosPrueba = new Dictionary<int, string>
             {
+                { 00225 ,"Álava" },
                 { 29570 ,"Málaga" },
                 { 41210 ,"Sevilla" } // meter más
             };
@@ -43,8 +40,8 @@ namespace ClasesTest
             Validacion val = new Validacion();
 
             Assert.AreEqual(null, val.CodigoPostal(cpLargo));
-            Assert.AreEqual(null, val.CodigoPostal(cpCorto));
             Assert.AreEqual(null, val.CodigoPostal(cpGrande));
+            Assert.AreEqual(null, val.CodigoPostal(cpCero));
 
             foreach (KeyValuePair<int, string> pares in codigosPrueba)
             {
